@@ -6,7 +6,9 @@ import "forge-std/Script.sol";
 import "../src/tokens/DScCoin.sol";
 import "../src/core/DScEngine.sol";
 import "../test/mocks/MockV3Aggregrator.sol";
-import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
+import "../test/mocks/ERC20mock.sol";
+
+// import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
 
 // ProfessorAudits
 contract HelperConfig is Script {

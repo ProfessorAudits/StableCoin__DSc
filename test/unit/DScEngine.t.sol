@@ -8,7 +8,8 @@ import "../../src/tokens/DScCoin.sol";
 import "../../src/core/DScEngine.sol";
 import "../../script/HelperConfig.s.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
+// import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
+import "../mocks/ERC20mock.sol";
 
 contract DScEngineTest is Test {
     DeployDSc deployDSc;
@@ -64,8 +65,5 @@ contract DScEngineTest is Test {
 
         vm.stopPrank();
     }
-
-      
-
 }
 // ProfessorAudits

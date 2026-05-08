@@ -9,7 +9,8 @@ import "../../src/tokens/DScCoin.sol";
 import "../../src/core/DScEngine.sol";
 import "../../script/HelperConfig.s.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
+import "../mocks/ERC20mock.sol";
+// import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
 import "./HandlerInvariant_DScEngine.t.sol";
 
 contract ForInvariant_DScEngine is StdInvariant, Test {
@@ -34,26 +35,21 @@ contract ForInvariant_DScEngine is StdInvariant, Test {
         targetContract(address(handlerForInvariant));
     }
 
-//   function testValuesAmount() public {
-//         uint256 balanceOfWethinDSC_asCollateral = ERC20Mock(weth).balanceOf(address(dscEngine));
-//         uint256 balanceOflinkinDSC_asCollateral = ERC20Mock(link).balanceOf(address(dscEngine));
-//         uint256 totalSupplyofDScCoin = dscCoin.totalSupply();
+    //   function testValuesAmount() public {
+    //         uint256 balanceOfWethinDSC_asCollateral = ERC20Mock(weth).balanceOf(address(dscEngine));
+    //         uint256 balanceOflinkinDSC_asCollateral = ERC20Mock(link).balanceOf(address(dscEngine));
+    //         uint256 totalSupplyofDScCoin = dscCoin.totalSupply();
 
-//         uint256 usdValueofAllWethinDSc = dscEngine.getUsdValue(address(weth), balanceOfWethinDSC_asCollateral);
-//         uint256 usdValueofAlllinkinDSc = dscEngine.getUsdValue(address(link), balanceOflinkinDSC_asCollateral);
+    //         uint256 usdValueofAllWethinDSc = dscEngine.getUsdValue(address(weth), balanceOfWethinDSC_asCollateral);
+    //         uint256 usdValueofAlllinkinDSc = dscEngine.getUsdValue(address(link), balanceOflinkinDSC_asCollateral);
 
-//         console.log("INVARIANTFILE__DScCoin TotalSupply:" , totalSupplyofDScCoin);
-//         console.log("INVARIANTFILE__Weth Amount in contract:", balanceOfWethinDSC_asCollateral);
-//         console.log("INVARIANTFILE__link Amount in contract:", balanceOflinkinDSC_asCollateral);
-//         console.log("INVARIANTFILE__weth USDAmount in contract:", usdValueofAllWethinDSc);
-//         console.log("INVARIANTFILE__link USDAmount in contract:", usdValueofAlllinkinDSc);
+    //         console.log("INVARIANTFILE__DScCoin TotalSupply:" , totalSupplyofDScCoin);
+    //         console.log("INVARIANTFILE__Weth Amount in contract:", balanceOfWethinDSC_asCollateral);
+    //         console.log("INVARIANTFILE__link Amount in contract:", balanceOflinkinDSC_asCollateral);
+    //         console.log("INVARIANTFILE__weth USDAmount in contract:", usdValueofAllWethinDSc);
+    //         console.log("INVARIANTFILE__link USDAmount in contract:", usdValueofAlllinkinDSc);
 
-
-//     }
-
-
-
-
+    //     }
 
     function invariant_CollateralMustbeGreaterThan_TotalSupplyOfDSC() public {
         uint256 balanceOfWethinDSC_asCollateral = ERC20Mock(weth).balanceOf(address(dsc_Engine));

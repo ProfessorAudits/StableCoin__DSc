@@ -9,7 +9,9 @@ import "../../src/tokens/DScCoin.sol";
 import "../../src/core/DScEngine.sol";
 import "../../script/HelperConfig.s.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
+import "../mocks/ERC20mock.sol";
+
+// import "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
 
 contract HandlerInvariant_DScEngine is StdInvariant, Test {
     DScCoin _DscCoin;
@@ -36,29 +38,26 @@ contract HandlerInvariant_DScEngine is StdInvariant, Test {
             // ERC20Mock(AllowedTokensAddr[0]).mint(UserB, _amountForCollateralDepositMoney);
             ERC20Mock(AllowedTokensAddr[0]).approve(address(dscEngine), _amountForCollateralDepositMoney);
             dscEngine.depositCollateral(AllowedTokensAddr[0], _amountForCollateralDepositMoney);
-                    
+
             uint256 balanceOfwethinDScEngine = ERC20Mock(AllowedTokensAddr[0]).balanceOf(address(dscEngine));
             uint256 UsdValueOfwethasCollateral = dscEngine.getUsdValue(AllowedTokensAddr[0], balanceOfwethinDScEngine);
-            console.log("DepositFunctionInHandlercontract; Usd Value of weth :", UsdValueOfwethasCollateral );
+            console.log("DepositFunctionInHandlercontract; Usd Value of weth :", UsdValueOfwethasCollateral);
             uint256 DScCoinTotalSupply = _DscCoin.totalSupply();
             console.log("DepositFunctionInHandlercontract; Total Supply of DSc Coin:", DScCoinTotalSupply);
-       
         } else {
             AllowedTokensAddr[1];
             // ERC20Mock(AllowedTokensAddr[0]).mint(UserB, _amountForCollateralDepositMoney);
 
             deal(AllowedTokensAddr[1], UserB, _amountForCollateralDepositMoney);
             ERC20Mock(AllowedTokensAddr[1]).approve(address(dscEngine), _amountForCollateralDepositMoney);
-            dscEngine.depositCollateral(AllowedTokensAddr[1], _amountForCollateralDepositMoney);                    
+            dscEngine.depositCollateral(AllowedTokensAddr[1], _amountForCollateralDepositMoney);
             uint256 balanceOfwbtcinDScEngine = ERC20Mock(AllowedTokensAddr[1]).balanceOf(address(dscEngine));
             uint256 UsdValueOfwbtcasCollateral = dscEngine.getUsdValue(AllowedTokensAddr[1], balanceOfwbtcinDScEngine);
 
-        console.log("DepositFunctionInHandlercontract; Usd Value of link:",  UsdValueOfwbtcasCollateral);
-        uint256 aDScCoinTotalSupply = _DscCoin.totalSupply();
-        console.log("DepositFunctionInHandlercontract; Total Supply of DSc Coin:", aDScCoinTotalSupply);
+            console.log("DepositFunctionInHandlercontract; Usd Value of link:", UsdValueOfwbtcasCollateral);
+            uint256 aDScCoinTotalSupply = _DscCoin.totalSupply();
+            console.log("DepositFunctionInHandlercontract; Total Supply of DSc Coin:", aDScCoinTotalSupply);
         }
-
-
 
         vm.stopPrank();
     }
@@ -105,7 +104,10 @@ contract HandlerInvariant_DScEngine is StdInvariant, Test {
         (uint256 UsdValueOfwethasCollateral) = dscEngine.getUsdValue(AllowedTokensAddr[0], balanceOfwethinDScEngine);
         (uint256 UsdValueOfwbtcasCollateral) = dscEngine.getUsdValue(AllowedTokensAddr[1], balanceOfwbtcinDScEngine);
 
-        console.log("MintFunctionInhandler;Usd Value of weth and link:", (UsdValueOfwethasCollateral + UsdValueOfwbtcasCollateral));
+        console.log(
+            "MintFunctionInhandler;Usd Value of weth and link:",
+            (UsdValueOfwethasCollateral + UsdValueOfwbtcasCollateral)
+        );
 
         uint256 DScCoinTotalSupply = _DscCoin.totalSupply();
         console.log("MintFunctionInhandler; Total Supply of DSc Coin:", DScCoinTotalSupply);
